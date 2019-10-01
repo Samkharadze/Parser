@@ -44,6 +44,7 @@ add_executable(
 	json_nlohmann
 	sources/json.cpp
 )
+target_link_libraries(json_nlohmann nlohmann_json::nlohmann_json)
 
 
 target_include_directories(
