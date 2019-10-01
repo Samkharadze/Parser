@@ -30,7 +30,8 @@ find_package(Threads)
 add_library(
   ${PROJECT_NAME}
   STATIC
-  sources/ParserJson.cpp
+  sources/json.cpp
+  sources/Commons.cpp
 )
 
 add_executable(
@@ -43,7 +44,7 @@ hunter_add_package(nlohmann_json)
 find_package(nlohmann_json CONFIG REQUIRED)
 add_executable(
 	Json_nlohmann
-	sources/Json.cpp
+	sources/Task3.cpp
 )
 target_link_libraries(json_nlohmann nlohmann_json::nlohmann_json)
 
