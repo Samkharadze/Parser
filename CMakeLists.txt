@@ -30,19 +30,20 @@ find_package(Threads)
 add_library(
   ${PROJECT_NAME}
   STATIC
-  sources/my_json.cpp
+  sources/ParserJson.cpp
 )
 
 add_executable(
   tests
   tests/test2.cpp
+  tests/test1.cpp
 )
 
 hunter_add_package(nlohmann_json)
 find_package(nlohmann_json CONFIG REQUIRED)
 add_executable(
-	json_nlohmann
-	sources/json.cpp
+	Json_nlohmann
+	sources/Json.cpp
 )
 target_link_libraries(json_nlohmann nlohmann_json::nlohmann_json)
 
