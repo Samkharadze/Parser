@@ -18,7 +18,7 @@ HunterGate(
   SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
 )
 
-project(PROJECTNAME)    # TODO
+project(parser)
 string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
 string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
@@ -30,13 +30,21 @@ find_package(Threads)
 add_library(
   ${PROJECT_NAME}
   STATIC
-  # TODO
+  sources/my_json.cpp
 )
 
 add_executable(
   tests
-  # TODO
+  tests/test2.cpp
 )
+
+hunter_add_package(nlohmann_json)
+find_package(nlohmann_json CONFIG REQUIRED)
+add_executable(
+	json_nlohmann
+	sources/json.cpp
+)
+
 
 target_include_directories(
   ${PROJECT_NAME}
