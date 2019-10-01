@@ -35,3 +35,5 @@ namespace
 		EXPECT_EQ(std::any_cast<std::string>(address["city"]), "Moscow");
 		EXPECT_EQ(std::any_cast<std::string>(address["street"]), "Vozdvijenka");
 	}
+
+}
