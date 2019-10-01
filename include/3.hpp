@@ -1,6 +1,5 @@
 #pragma once
 
-
-#include "Json.hpp"
+#include <nlohmann/json.hpp>
 
 Json Transform(const std::string& s);

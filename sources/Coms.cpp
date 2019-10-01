@@ -1,8 +1,5 @@
-
-#include "Commons.hpp"
-
+#include "Coms.hpp"
 using namespace std;
-
 bool IsSpace(char ch)
 {
 	return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
@@ -24,7 +21,6 @@ int FindEnd(const string& s, int startInd, char openSym, char closeSym)
 	return i;
 }
 
-// Находит позицию первого непробельного символа, начиная с current.
 int MissSpaces(const string&s, int current)
 {
 	while (current < s.length() && IsSpace(s[current]))

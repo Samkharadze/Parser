@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
-//#include "../include/my_json.hpp"
-
 using json = nlohmann::json;
 
 namespace {
