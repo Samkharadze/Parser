@@ -122,10 +122,10 @@ Json Json::parse(const std::string & s)
 vector<any> Json::GetArray(const string &s, int start) const
 {
 	vector<any> result;
-	int i = start;
 
-	while (i < s.length())
+	for (auto j = s.begin() + start; j < s.end(); j)
 	{
+		int i = j - s.begin() - start;
 		i = MissSpaces(s, i);
 		pair<any, int> p = GetValueAndLen(s, i);
 
@@ -149,10 +149,10 @@ std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) c
 {
 	std::map<std::string, std::any> result;
 
-	int i = start;
 
-	while (i < s.length())
+	for (auto j = s.begin() + start; j < s.end(); j)
 	{
+		int i = j - s.begin() - start;
 		i = MissSpaces(s, i);
 		if (s[i] != '\"')
 			throw exception("String is not valid!");
