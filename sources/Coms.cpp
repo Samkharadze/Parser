@@ -1,5 +1,5 @@
 #include "Coms.hpp"
-#include <cctupe>
+#include <cctype>
 using namespace std;
 bool isSpace(char ch)
 {
