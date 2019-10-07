@@ -21,7 +21,7 @@ Json::Json(const string & s)
 		_arr = GetArray(s, i + 1);
 	}
 	else
-		throw exception("String is not valid!");
+		throw runtime_error("String is not valid!");
 }
 
 bool Json::is_array() const
@@ -92,7 +92,7 @@ pair<any, int> GetValueAndLen(const string &s, int start)
 		result = nullptr;
 	}
 	else
-		throw exception("String is not Valid!");
+		throw runtime_error("String is not Valid!");
 
 	return pair(result, i - start);
 }
@@ -102,7 +102,7 @@ any & Json::operator[](const std::string & key)
 	if (is_object())
 		return _obj[key];
 
-	throw exception("It is not a object!");
+	throw runtime_error("It is not a object!");
 }
 
 any & Json::operator[](int index)
@@ -110,7 +110,7 @@ any & Json::operator[](int index)
 	if (is_array())
 		return _arr[index];
 
-	throw exception("This is not array!");
+	throw runtime_error("This is not array!");
 }
 
 Json Json::parse(const std::string & s)
@@ -138,7 +138,7 @@ vector<any> Json::GetArray(const string &s, int start) const
 		if (s[i++] == ',')
 			continue;
 
-		throw exception("String is not Valid");
+		throw runtime_error("String is not Valid");
 	}
 
 	return result;
@@ -154,7 +154,7 @@ std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) c
 		int i = j - s.begin() - start;
 		i = MissSpaces(s, i);
 		if (s[i] != '\"')
-			throw exception("String is not valid!");
+			throw runtime_error("String is not valid!");
 
 		string key = GetString(s, i);
 		i += key.length() + 2;
@@ -176,7 +176,7 @@ std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) c
 		if (s[i++] == ',')
 			continue;
 
-		throw runtime_exception("String is not Valid");
+		throw runtime_error("String is not Valid");
 	}
 
 	return result;
