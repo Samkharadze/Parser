@@ -122,7 +122,7 @@ vector<any> Json::GetArray(const string &s, int start) const
 {
 	vector<any> result;
 
-	for (auto j = s.begin() + start; j < s.end(); j)
+	for (auto j = s.begin() + start; j < s.end(); j++)
 	{
 		int i = j - s.begin() - start;
 		i = MissSpaces(s, i);
