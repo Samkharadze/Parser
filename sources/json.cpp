@@ -150,7 +150,7 @@ std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) c
 	std::map<std::string, std::any> result;
 
 
-	for (auto j = s.begin() + start; j < s.end(); j)
+	for (auto j = s.begin() + start; j < s.end(); j++)
 	{
 		int i = j - s.begin() - start;
 		i = MissSpaces(s, i);
