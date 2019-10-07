@@ -24,6 +24,8 @@ string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 hunter_add_package(GTest)
+hunter_add_package(nlohmann_json)
+find_package(nlohmann_json CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 find_package(Threads)
 
@@ -31,7 +33,7 @@ add_library(
   ${PROJECT_NAME}
   STATIC
   sources/json.cpp
-  sources/Commons.cpp
+  sources/Coms.cpp
 )
 
 add_executable(
@@ -40,14 +42,11 @@ add_executable(
   tests/test1.cpp
 )
 
-hunter_add_package(nlohmann_json)
-find_package(nlohmann_json CONFIG REQUIRED)
 add_executable(
-	json_nlohmann
-	sources/Task3.cpp
+	task2
+	sources/parserjson.cpp
 )
-target_link_libraries(json_nlohmann nlohmann_json::nlohmann_json)
-
+target_link_libraries(task2 ${PROJECT_NAME})
 
 target_include_directories(
   ${PROJECT_NAME}
@@ -62,21 +61,12 @@ target_include_directories(
   ${GTEST_ROOT}/include
 )
 
-find_library(
-  GTEST_LOCAL_LIB
-  NAMES gtest
-  PATHS ${PROJECT_NAME}/lib64/
-)
-find_library(
-  GTEST_LOCAL_LIB_MAIN
-  NAMES gtest_main
-  PATHS ${PROJECT_NAME}/lib64/
-)
 target_link_libraries(
   tests
   ${CMAKE_THREAD_LIBS_INIT}
-  ${GTEST_LOCAL_LIB}
-  ${GTEST_LOCAL_LIB_MAIN}
+  GTest::main
+  GTest::gtest
+  nlohmann_json::nlohmann_json
   ${PROJECT_NAME}
 )
 
