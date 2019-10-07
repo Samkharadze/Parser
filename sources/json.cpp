@@ -160,7 +160,7 @@ std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) c
 		i += key.length() + 2;
 		i = MissSpaces(s, i);
 		if (s[i++] != ':')
-			throw exception("String is not valid!");
+			throw runtime_error("String is not valid!");
 
 		i = MissSpaces(s, i);
 		pair<any, int> p = GetValueAndLen(s, i);
