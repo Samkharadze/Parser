@@ -1,5 +1,4 @@
 
-
 #include "../include/Coms.hpp"
 #include "../include/my_json.hpp"
 
@@ -177,7 +176,7 @@ std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) c
 		if (s[i++] == ',')
 			continue;
 
-		throw exception("String is not Valid");
+		throw runtime_exception("String is not Valid");
 	}
 
 	return result;
