@@ -1,6 +1,6 @@
-
 #include "../include/Coms.hpp"
 #include "../include/my_json.hpp"
+#include <stdexcept>
 
 using namespace std;
 
