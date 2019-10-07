@@ -1,5 +1,5 @@
 #include "Coms.hpp"
-#include <cctupe>
+#include <cctype>
 using namespace std;
 bool isSpace(char ch)
 {
@@ -39,7 +39,7 @@ string getString(const string &s, int start)
 			endStr = *i - s.begin();
 
 	if (endStr == s.length() || endStr == 0)
-		throw exception("String is not valid!");
+		throw runtime_error("String is not valid!");
 
 	return s.substr(start + 1, endStr - start - 1);
 }
@@ -52,7 +52,7 @@ bool isDigit(char ch)
 void check(int cur, string& s)
 {
 	if (cur == s.length())
-		throw exception("String is not valid!");
+		throw runtime_error("String is not valid!");
 }
 pair<double, int> getNumWithLen(const string &s, int start)
 {
