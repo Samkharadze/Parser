@@ -33,7 +33,7 @@ add_library(
   ${PROJECT_NAME}
   STATIC
   sources/json.cpp
-  sources/Coms.cpp
+  sources/Commons.cpp
 )
 
 add_executable(

@@ -1,7 +1,7 @@
-#include "pch.h"
+
 #include <iostream>
-#include <nlohmann/json.hpp>
-#include "../include/3.hpp"
+#include <../nlohmann/json.hpp>
+#include "../include/Task3.hpp"
 #include <any>
 
 using namespace std;
