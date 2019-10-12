@@ -1,100 +1,76 @@
 #include <sstream> 
 #include <iostream>
 #include "Commons.hpp"
-#include <cctype>
-#include <iterator>
 
 using namespace std;
-bool isSpace(char ch)
+
+bool IsSpace(char ch)
 {
 	return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
 }
 
-int findEnd(const string& s, int startInd, char openSym, char closeSym)
+int FindEnd(const string& s, int startInd, char openSym, char closeSym)
 {
 	int counter = 0;
-	auto i = s.begin() + startInd;
-	for (; i < s.end(); i++)
+	int i = startInd;
+	do
 	{
-		if (s[(i - s.begin())] == openSym)
-			counter++;
-		if (s[(i - s.begin())] == closeSym)
-			counter--;
-		if (counter == 0)
-			break;
-	}
+		char sym = s[i++];
+		if (sym == openSym)
+			++counter;
+		else if (sym == closeSym)
+			--counter;
+	} while (i < s.length() && counter != 0);
 
-	return (i - s.begin());
+	return i;
 }
 
-int missSpaces(const string&s, int current)
+int MissSpaces(const string&s, int current)
 {
-	for (auto i = s.begin() + current; i < s.end(); i++)
-		if (!isSpace(s[(i - s.begin())]))
-			return (i - s.begin());
+	while (current < s.length() && IsSpace(s[current]))
+		++current;
 
+	return current;
 }
 
-string getString(const string &s, int start)
+string GetString(const string &s, int start)
 {
-	int endStr = 0;
-	for (auto i = s.begin() + start + 1; i < s.end(); i++)
-		if (s[(i - s.begin())] == '\"')
-			endStr = (i - s.begin());
+	int endStr = start + 1;
+	while (endStr < s.length() && s[endStr] != '\"')
+		++endStr;
 
-	if (endStr == s.length() || endStr == 0)
+	if (endStr == s.length())
 		throw exception("String is not valid!");
 
 	return s.substr(start + 1, endStr - start - 1);
 }
 
-bool isDigit(char ch)
+bool IsNum(char ch)
 {
-	return isdigit(ch);
+	return ch >= '0' && ch <= '9';
 }
 
-void check(int cur, string& s)
-{
-	if (cur == s.length())
-		throw exception("String is not valid!");
-}
-pair<double, int> getNumWithLen(const string &s, int start)
+pair<double, int> GetNumWithLen(const string &s, int start)
 {
 	double result;
 
 	int cur = start;
 	bool isDouble = false;
+	while (cur < s.length() && IsNum(s[cur]))
+		++cur;
 
-	for (;;)
-	{
-		if (!((cur < s.length() && isDigit(s[cur]))))
-			break;
-			++cur;
-	}
-	void check(int cur, const string& s);
-	{
-		if (cur == s.length())
-			throw exception("String is not valid!");
-	}
-
+	if (cur == s.length())
+		throw exception("String is not valid!");
 
 	if (s[cur] == '.')
 	{
 		++cur;
-		for (;;)
-		{
-			if (!((cur < s.length() && isDigit(s[cur]))))
-				break;
-				++cur;
-		}
-
-	}
-	void check(int cur, const string& s);
-	{
-		if (cur == s.length())
-			throw exception("String is not valid!");
+		while (cur < s.length() && IsNum(s[cur]))
+			++cur;
 	}
 
+	if (cur == s.length())
+		throw exception("String is not valid!");
 
 
 	stringstream ss;
