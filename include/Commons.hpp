@@ -2,6 +2,7 @@
 
 #include <string>
 
+
 //ok
 bool IsSpace(char ch);
 int FindEnd(const std::string& s, int startInd, char openSym, char closeSym);

@@ -1,5 +1,9 @@
+#include <sstream> 
+#include <iostream>
 #include "Commons.hpp"
 #include <cctype>
+#include <iterator>
+
 using namespace std;
 bool isSpace(char ch)
 {
@@ -9,25 +13,25 @@ bool isSpace(char ch)
 int findEnd(const string& s, int startInd, char openSym, char closeSym)
 {
 	int counter = 0;
-
-	for (auto i = s.begin() + startInd; i < s.end(); i++)
+	auto i = s.begin() + startInd;
+	for (; i < s.end(); i++)
 	{
-		if (s[*i - s.begin()] == openSym)
+		if (s[(i - s.begin())] == openSym)
 			counter++;
-		if (s[*i - s.begin()] == closeSym)
+		if (s[(i - s.begin())] == closeSym)
 			counter--;
 		if (counter == 0)
 			break;
 	}
 
-	return *i - s.begin();
+	return (i - s.begin());
 }
 
 int missSpaces(const string&s, int current)
 {
 	for (auto i = s.begin() + current; i < s.end(); i++)
-		if (!isSpace(s[*i - s.begin()]))
-			return *i - s.begin();
+		if (!isSpace(s[(i - s.begin())]))
+			return (i - s.begin());
 
 }
 
@@ -35,11 +39,11 @@ string getString(const string &s, int start)
 {
 	int endStr = 0;
 	for (auto i = s.begin() + start + 1; i < s.end(); i++)
-		if (s[*i - s.begin()] == '\"')
-			endStr = *i - s.begin();
+		if (s[(i - s.begin())] == '\"')
+			endStr = (i - s.begin());
 
 	if (endStr == s.length() || endStr == 0)
-		throw runtime_error("String is not valid!");
+		throw exception("String is not valid!");
 
 	return s.substr(start + 1, endStr - start - 1);
 }
@@ -52,7 +56,7 @@ bool isDigit(char ch)
 void check(int cur, string& s)
 {
 	if (cur == s.length())
-		throw runtime_error("String is not valid!");
+		throw exception("String is not valid!");
 }
 pair<double, int> getNumWithLen(const string &s, int start)
 {
@@ -63,24 +67,33 @@ pair<double, int> getNumWithLen(const string &s, int start)
 
 	for (;;)
 	{
-		if !((cur < s.length() && isDigit(s[cur])))
-			break
+		if (!((cur < s.length() && isDigit(s[cur]))))
+			break;
 			++cur;
 	}
-	check();
+	void check(int cur, const string& s);
+	{
+		if (cur == s.length())
+			throw exception("String is not valid!");
+	}
+
 
 	if (s[cur] == '.')
 	{
 		++cur;
 		for (;;)
 		{
-			if !((cur < s.length() && isDigit(s[cur])))
-				break
+			if (!((cur < s.length() && isDigit(s[cur]))))
+				break;
 				++cur;
 		}
 
 	}
-	check();
+	void check(int cur, const string& s);
+	{
+		if (cur == s.length())
+			throw exception("String is not valid!");
+	}
 
 
 
