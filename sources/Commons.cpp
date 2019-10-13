@@ -65,6 +65,7 @@ pair<double, int> getNumWithLen(const string &s, int start)
 	{
 		if (!((cur < s.length() && isDigit(s[cur]))))
 			break;
+		else
 			++cur;
 	}
 	void check(string::size_type cur, const string& s);
