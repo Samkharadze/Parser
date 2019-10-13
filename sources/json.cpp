@@ -8,17 +8,17 @@ using namespace std;
 Json::Json(const string & s)
 {
 	int i = 0;
-	i = missSpaces(s, i);
+	i = missspaces(s, i);
 
 	if (s[i] == '{')
 	{
-		_isArray = false;
-		_obj = GetMap(s, i + 1);
+		_isarray = false;
+		_obj = getmap(s, i + 1);
 	}
 	else if (s[i] == '[')
 	{
-		_isArray = true;
-		_arr = GetArray(s, i + 1);
+		_isarray = true;
+		_arr = getarray(s, i + 1);
 	}
 	else
 		throw runtime_error("String is not valid!");
@@ -26,15 +26,15 @@ Json::Json(const string & s)
 
 bool Json::is_array() const
 {
-	return _isArray;
+	return _isarray;
 }
 
 bool Json::is_object() const
 {
-	return !_isArray;
+	return !_isarray;
 }
 
-int Json::GetArrSize() const
+int Json::getarrsize() const
 {
 	if (is_array())
 		return _arr.size();
@@ -42,7 +42,7 @@ int Json::GetArrSize() const
 		throw;
 }
 
-pair<any, int> GetValueAndLen(const string &s, int start)
+pair<any, int> getvalueandlen(const string &s, int start)
 {
 	any result;
 	int i = start;
@@ -50,7 +50,7 @@ pair<any, int> GetValueAndLen(const string &s, int start)
 
 	if (s[i] == '{')
 	{
-		endObj = findEnd(s, i, '{', '}');
+		endObj = findend(s, i, '{', '}');
 
 		string str = s.substr(i, endObj - i);
 		result = Json(str);
@@ -58,7 +58,7 @@ pair<any, int> GetValueAndLen(const string &s, int start)
 	}
 	else if (s[i] == '[')
 	{
-		endObj = findEnd(s, i, '[', ']');
+		endObj = findend(s, i, '[', ']');
 
 		string str = s.substr(i, endObj - i);
 		result = Json(str);
@@ -66,13 +66,13 @@ pair<any, int> GetValueAndLen(const string &s, int start)
 	}
 	else if (s[i] == '\"')
 	{
-		string str = getString(s, i);
+		string str = getstring(s, i);
 		i += str.length() + 2;
 		result = str;
 	}
-	else if (isNum(s[i]))
+	else if (isnum(s[i]))
 	{
-		pair<any, int> p = getNumWithLen(s, i);
+		pair<any, int> p = getnumwithlen(s, i);
 		i += p.second;
 		result = p.first;
 	}
@@ -118,20 +118,20 @@ Json Json::parse(const std::string & s)
 	return Json(s);
 }
 
-vector<any> Json::GetArray(const string &s, int start) const
+vector<any> Json::getarray(const string &s, int start) const
 {
 	vector<any> result;
 
 	for (auto j = s.begin() + start; j < s.end(); j++)
 	{
 		int i = j - s.begin() - start;
-		i = missSpaces(s, i);
-		pair<any, int> p = GetValueAndLen(s, i);
+		i = missspaces(s, i);
+		pair<any, int> p = getvalueandlen(s, i);
 
 		i += p.second;
 		result.push_back(p.first);
 
-		i = missSpaces(s, i);
+		i = missspaces(s, i);
 		if (s[i] == ']')
 			break;
 
@@ -144,7 +144,7 @@ vector<any> Json::GetArray(const string &s, int start) const
 	return result;
 }
 
-std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) const
+std::map<std::string, std::any> Json::getmap(const std::string & s, int start) const
 {
 	std::map<std::string, std::any> result;
 
@@ -152,24 +152,24 @@ std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) c
 	for (auto j = s.begin() + start; j < s.end(); j++)
 	{
 		int i = j - s.begin() - start;
-		i = missSpaces(s, i);
+		i = missspaces(s, i);
 		if (s[i] != '\"')
 			throw runtime_error("String is not valid!");
 
-		string key = getString(s, i);
+		string key = getstring(s, i);
 		i += key.length() + 2;
-		i = missSpaces(s, i);
+		i = missspaces(s, i);
 		if (s[i++] != ':')
 			throw runtime_error("String is not valid!");
 
-		i = missSpaces(s, i);
-		pair<any, int> p = GetValueAndLen(s, i);
+		i = missspaces(s, i);
+		pair<any, int> p = getvalueandlen(s, i);
 
 		result[key] = p.first;
 
 		i += p.second;
 
-		i = missSpaces(s, i);
+		i = missspaces(s, i);
 		if (s[i] == '}')
 			break;
 

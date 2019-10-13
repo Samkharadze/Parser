@@ -3,12 +3,12 @@
 #include "Commons.hpp"
 #include <cctype>
 using namespace std;
-bool isSpace(char ch)
+bool isspace(char ch)
 {
 	return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
 }
 
-int findEnd(const string& s, int startInd, char openSym, char closeSym)
+int findend(const string& s, int startInd, char openSym, char closeSym)
 {
 	int counter = 0;
 	auto i = s.begin() + startInd;
@@ -25,27 +25,27 @@ int findEnd(const string& s, int startInd, char openSym, char closeSym)
 	return (i - s.begin());
 }
 
-int missSpaces(const string&s, int current)
+int missspaces(const string&s, int current)
 {
 	for (auto i = s.begin() + current; i < s.end(); i++)
-		if (!isSpace(s[(i - s.begin())]))
+		if (!isspace(s[(i - s.begin())]))
 			return (i - s.begin());
 	     return s.length();
 }
 
-string getString(const string &s, int start)
+string getstring(const string &s, int start)
 {
-	string::size_type endStr = 0;
+	string::size_type endstr = 0;
 	for (auto i = s.begin() + start + 1; i < s.end(); i++)
 		if (s[(i - s.begin())] == '\"')
-		 endStr = (i - s.begin());
-	 if (endStr == s.length() || endStr == 0)
+		 endstr = (i - s.begin());
+	 if (endstr == s.length() || endstr == 0)
 		 throw std::runtime_error("String is not valid!");
 
-	return s.substr(start + 1, endStr - start - 1);
+	return s.substr(start + 1, endstr - start - 1);
 }
 
-bool isDigit(char ch)
+bool isdigit(char ch)
 {
 	return isdigit(ch);
 }
@@ -55,7 +55,7 @@ void check(string::size_type cur, string& s)
 	if (cur == s.length())
 		throw std::runtime_error("String is not valid!");
 }
-pair<double, int> getNumWithLen(const string &s, int start)
+pair<double, int> getnumwithlen(const string &s, int start)
 {
 	double result;
 	string::size_type cur = start;
@@ -63,7 +63,7 @@ pair<double, int> getNumWithLen(const string &s, int start)
 
 	for (;;)
 	{
-		if (!((cur < s.length() && isDigit(s[cur]))))
+		if (!((cur < s.length() && isdigit(s[cur]))))
 			break;
 		else
 			++cur;
@@ -79,7 +79,7 @@ pair<double, int> getNumWithLen(const string &s, int start)
 		++cur;
 		for (;;)
 		{
-			if (!((cur < s.length() && isDigit(s[cur]))))
+			if (!((cur < s.length() && isdigit(s[cur]))))
 				break;
 			else
 				++cur;

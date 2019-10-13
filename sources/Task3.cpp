@@ -20,14 +20,14 @@ Json Transform(const std::string & s)
 {
 	Json data(s);
 
-	if (!data.is_array() || data.GetArrSize() != 3)
+	if (!data.is_array() || data.getarrsize() != 3)
 		throw exception("Wrong string");
 
 
 	TextStorage ss;
 
-	int size = any_cast<Json>(data[0]).GetArrSize();
-	if (size != any_cast<Json>(data[1]).GetArrSize() || size != any_cast<Json>(data[2]).GetArrSize())
+	int size = any_cast<Json>(data[0]).getarrsize();
+	if (size != any_cast<Json>(data[1]).getarrsize() || size != any_cast<Json>(data[2]).getarrsize())
 		throw exception("Wrong string");
 
 	ss.put("[");
