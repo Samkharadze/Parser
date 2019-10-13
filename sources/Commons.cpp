@@ -30,6 +30,7 @@ int missSpaces(const string&s, int current)
 	for (auto i = s.begin() + current; i < s.end(); i++)
 		if (!isSpace(s[(i - s.begin())]))
 			return (i - s.begin());
+	     return s.length();
 }
 
 string getString(const string &s, int start)
