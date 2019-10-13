@@ -50,16 +50,15 @@ bool isDigit(char ch)
 	return isdigit(ch);
 }
 
-void check(int cur, string& s)
+void check(string::size_type cur, string& s)
 {
 	if (cur == s.length())
-		throw exception("String is not valid!");
+		throw std::runtime_error("String is not valid!");
 }
 pair<double, int> getNumWithLen(const string &s, int start)
 {
 	double result;
-
-	int cur = start;
+	string::size_type cur = start;
 	bool isDouble = false;
 
 	for (;;)
@@ -68,10 +67,10 @@ pair<double, int> getNumWithLen(const string &s, int start)
 			break;
 			++cur;
 	}
-	void check(int cur, const string& s);
+	void check(string::size_type cur, const string& s);
 	{
 		if (cur == s.length())
-			throw exception("String is not valid!");
+			throw std::runtime_error("String is not valid!");
 	}
 
 	if (s[cur] == '.')
@@ -85,10 +84,10 @@ pair<double, int> getNumWithLen(const string &s, int start)
 		}
 
 	}
-	void check(int cur, const string& s);
+	void check(string::size_type cur, const string& s);
 	{
 		if (cur == s.length())
-			throw exception("String is not valid!");
+			throw std::runtime_error("String is not valid!");
 	}
 
 
