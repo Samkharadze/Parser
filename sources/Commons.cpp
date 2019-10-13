@@ -35,12 +35,11 @@ int missSpaces(const string&s, int current)
 
 string getString(const string &s, int start)
 {
-	int endStr = 0;
+	string::size_type endStr = 0;
 	for (auto i = s.begin() + start + 1; i < s.end(); i++)
 		if (s[(i - s.begin())] == '\"')
-			endStr = (i - s.begin());
-
-	if (endStr == s.length() || endStr == 0)
+		 endStr = (i - s.begin());
+	 if (endStr == s.length() || endStr == 0)
 		throw exception("String is not valid!");
 
 	return s.substr(start + 1, endStr - start - 1);
