@@ -54,7 +54,7 @@ int main()
 	EXPECT_EQ(std::any_cast<std::string>(address["city"]), "Moscow");
 	EXPECT_EQ(std::any_cast<std::string>(address["street"]), "Vozdvijenka");
 
-	Json my_json = Transform(task3_data);
+	Json my_json = transform(task3_data);
 
 	EXPECT_EQ(any_cast<string>(any_cast<Json>(my_json[0])["ticker"]), "Si-9.15");
 	EXPECT_EQ(any_cast<string>(any_cast<Json>(my_json[1])["ticker"]), "RTS-9.15");
