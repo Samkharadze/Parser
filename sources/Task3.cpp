@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class TextStorage
+class textstorage
 {
 public:
 	stringstream storage;
@@ -16,7 +16,7 @@ public:
 		return storage;
 	}
 }
-Json Transform(const std::string & s)
+Json transform(const std::string & s)
 {
 	Json data(s);
 
@@ -24,7 +24,7 @@ Json Transform(const std::string & s)
 		throw exception("Wrong string");
 
 
-	TextStorage ss;
+	textstorage ss;
 
 	int size = any_cast<Json>(data[0]).getarrsize();
 	if (size != any_cast<Json>(data[1]).getarrsize() || size != any_cast<Json>(data[2]).getarrsize())
