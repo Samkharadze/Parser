@@ -8,7 +8,7 @@ using namespace std;
 Json::Json(const string & s)
 {
 	int i = 0;
-	i = MissSpaces(s, i);
+	i = missSpaces(s, i);
 
 	if (s[i] == '{')
 	{
@@ -50,7 +50,7 @@ pair<any, int> GetValueAndLen(const string &s, int start)
 
 	if (s[i] == '{')
 	{
-		endObj = FindEnd(s, i, '{', '}');
+		endObj = findEnd(s, i, '{', '}');
 
 		string str = s.substr(i, endObj - i);
 		result = Json(str);
@@ -58,7 +58,7 @@ pair<any, int> GetValueAndLen(const string &s, int start)
 	}
 	else if (s[i] == '[')
 	{
-		endObj = FindEnd(s, i, '[', ']');
+		endObj = findEnd(s, i, '[', ']');
 
 		string str = s.substr(i, endObj - i);
 		result = Json(str);
@@ -66,13 +66,13 @@ pair<any, int> GetValueAndLen(const string &s, int start)
 	}
 	else if (s[i] == '\"')
 	{
-		string str = GetString(s, i);
+		string str = getString(s, i);
 		i += str.length() + 2;
 		result = str;
 	}
-	else if (IsNum(s[i]))
+	else if (isNum(s[i]))
 	{
-		pair<any, int> p = GetNumWithLen(s, i);
+		pair<any, int> p = getNumWithLen(s, i);
 		i += p.second;
 		result = p.first;
 	}
@@ -125,13 +125,13 @@ vector<any> Json::GetArray(const string &s, int start) const
 	for (auto j = s.begin() + start; j < s.end(); j++)
 	{
 		int i = j - s.begin() - start;
-		i = MissSpaces(s, i);
+		i = missSpaces(s, i);
 		pair<any, int> p = GetValueAndLen(s, i);
 
 		i += p.second;
 		result.push_back(p.first);
 
-		i = MissSpaces(s, i);
+		i = missSpaces(s, i);
 		if (s[i] == ']')
 			break;
 
@@ -152,24 +152,24 @@ std::map<std::string, std::any> Json::GetMap(const std::string & s, int start) c
 	for (auto j = s.begin() + start; j < s.end(); j++)
 	{
 		int i = j - s.begin() - start;
-		i = MissSpaces(s, i);
+		i = missSpaces(s, i);
 		if (s[i] != '\"')
 			throw runtime_error("String is not valid!");
 
-		string key = GetString(s, i);
+		string key = getString(s, i);
 		i += key.length() + 2;
-		i = MissSpaces(s, i);
+		i = missSpaces(s, i);
 		if (s[i++] != ':')
 			throw runtime_error("String is not valid!");
 
-		i = MissSpaces(s, i);
+		i = missSpaces(s, i);
 		pair<any, int> p = GetValueAndLen(s, i);
 
 		result[key] = p.first;
 
 		i += p.second;
 
-		i = MissSpaces(s, i);
+		i = missSpaces(s, i);
 		if (s[i] == '}')
 			break;
 
