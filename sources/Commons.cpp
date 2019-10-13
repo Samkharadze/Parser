@@ -30,7 +30,6 @@ int missSpaces(const string&s, int current)
 	for (auto i = s.begin() + current; i < s.end(); i++)
 		if (!isSpace(s[(i - s.begin())]))
 			return (i - s.begin());
-
 }
 
 string getString(const string &s, int start)
@@ -59,7 +58,7 @@ pair<double, int> getNumWithLen(const string &s, int start)
 {
 	double result;
 	string::size_type cur = start;
-	bool isDouble = false;
+
 
 	for (;;)
 	{
@@ -81,6 +80,7 @@ pair<double, int> getNumWithLen(const string &s, int start)
 		{
 			if (!((cur < s.length() && isDigit(s[cur]))))
 				break;
+			else
 				++cur;
 		}
 
