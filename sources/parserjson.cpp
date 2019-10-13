@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <../nlohmann/json.hpp>
-#include "../include/task3.hpp"
+#include "../include/Task3.hpp"
 #include <any>
 #include"../include/my_json.hpp"
 
@@ -22,7 +22,7 @@ const char * const json_data = R"(
     }
 })";
 
-const char * const task3_data = R"(
+const char * const Task3_data = R"(
 [
     ["Si-9.15", "RTS-9.15", "GAZP-9.15"],
     [100024, 100027, 100050],
@@ -54,7 +54,7 @@ int main()
 	EXPECT_EQ(std::any_cast<std::string>(address["city"]), "Moscow");
 	EXPECT_EQ(std::any_cast<std::string>(address["street"]), "Vozdvijenka");
 
-	Json my_json = transform(task3_data);
+	Json my_json = transform(Task3_data);
 
 	EXPECT_EQ(any_cast<string>(any_cast<Json>(my_json[0])["ticker"]), "Si-9.15");
 	EXPECT_EQ(any_cast<string>(any_cast<Json>(my_json[1])["ticker"]), "RTS-9.15");
