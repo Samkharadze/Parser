@@ -40,7 +40,7 @@ string getString(const string &s, int start)
 		if (s[(i - s.begin())] == '\"')
 		 endStr = (i - s.begin());
 	 if (endStr == s.length() || endStr == 0)
-		throw exception("String is not valid!");
+		 throw std::runtime_error("String is not valid!");
 
 	return s.substr(start + 1, endStr - start - 1);
 }
