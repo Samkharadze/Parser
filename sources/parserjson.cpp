@@ -6,6 +6,7 @@
 #include"../include/my_json.hpp"
 
 using namespace std;
+class Json;
 
 const char * const json_data = R"(
 {
