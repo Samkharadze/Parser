@@ -2,7 +2,6 @@
 #include <iostream>
 #include <../nlohmann/json.hpp>
 #include "../include/Task3.hpp"
-#include "../sources/Task3.cpp"
 #include <any>
 #include"../include/my_json.hpp"
 
