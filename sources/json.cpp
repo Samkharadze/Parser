@@ -70,7 +70,7 @@ pair<any, int> getvalueandlen(const string &s, int start)
 		i += str.length() + 2;
 		result = str;
 	}
-	else if (isnum(s[i]))
+	else if (isdigit(s[i]))
 	{
 		pair<any, int> p = getnumwithlen(s, i);
 		i += p.second;
