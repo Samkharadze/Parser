@@ -6,7 +6,7 @@
 #include"../include/my_json.hpp"
 
 using namespace std;
-
+Json transform(const std::string& s);
 const char * const json_data = R"(
 {
     "lastname" : "Ivanov",
