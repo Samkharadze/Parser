@@ -1,6 +1,6 @@
 
 #include "Task3.hpp"
-
+Json transform(const std::string& s);
 using namespace std;
 
 class textstorage
@@ -16,7 +16,7 @@ public:
 		return storage;
 	}
 }
-Json transform(const std::string & s)
+Json transform(const std::string& s)
 {
 	Json data(s);
 

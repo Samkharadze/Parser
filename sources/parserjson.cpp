@@ -1,12 +1,11 @@
 
 #include <iostream>
 #include <../nlohmann/json.hpp>
-#include "../include/Task3.hpp"
+#include "Task3.hpp"
 #include <any>
 #include"../include/my_json.hpp"
 
 using namespace std;
-Json transform(const std::string& s);
 const char * const json_data = R"(
 {
     "lastname" : "Ivanov",
@@ -53,7 +52,7 @@ int main()
 	auto address = std::any_cast<Json>(object["address"]);
 	EXPECT_EQ(std::any_cast<std::string>(address["city"]), "Moscow");
 	EXPECT_EQ(std::any_cast<std::string>(address["street"]), "Vozdvijenka");
-
+	Json transform(const std::string& s);
 	Json my_json = transform(Task3_data);
 
 	EXPECT_EQ(any_cast<string>(any_cast<Json>(my_json[0])["ticker"]), "Si-9.15");
