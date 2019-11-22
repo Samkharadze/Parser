@@ -4,6 +4,7 @@
 #include <../include/Task3.hpp>
 #include <any>
 #include"../include/my_json.hpp"
+Json transform(const std::string& s);
 
 using namespace std;
 const char * const json_data = R"(
